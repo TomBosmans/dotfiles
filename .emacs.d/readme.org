@@ -152,7 +152,7 @@
       (setq visible-bell nil)
     #+end_src
 ** Stop making temp files!
-   Just ripped it from [[https://github.com/pjaspers/emacs/blob/master/customizations/pjaspers-editing.el#L51][pjasper]].
+   Just ripped it from [[https://github.com/pjaspers/emacs/blob/master/customizations/pjaspers-editing.el#L51][pjaspers]].
    #+begin_src emacs-lisp
      (setq backup-inhibited t
            make-backup-files nil
