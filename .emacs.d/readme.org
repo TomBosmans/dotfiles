@@ -159,6 +159,10 @@
            backup-directory-alist `((".*" . ,temporary-file-directory))
            auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
    #+end_src
+** Stop blinking cursor
+   #+begin_src emacs-lisp
+     (blink-cursor-mode 0)
+   #+end_src
 * Major Modes
 ** [[https://github.com/felipeochoa/rjsx-mode][Rjsx mode]]
    #+begin_src emacs-lisp
