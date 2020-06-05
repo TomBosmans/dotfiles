@@ -363,7 +363,6 @@
      When enable "Don't open directory" mode, ivy-mode will only open file and don't open directory. if user want to open dirctory, another key should typed, for example: "C-f". This mode is simple and predictable.
    #+begin_src emacs-lisp
      (use-package ivy
-       :bind ("C-s" . swiper)
        :config
        (ivy-mode 1)
        (setq ivy-extra-directories nil)
@@ -377,6 +376,8 @@
              (ivy--done path))))
        (define-key ivy-minibuffer-map (kbd "<return>") 'ivy-alt-done)
        (define-key ivy-minibuffer-map (kbd "C-f") 'eh-ivy-open-current-typed-path))
+
+     (global-set-key "\C-s" 'swiper)
    #+end_src
 *** [[https://github.com/abo-abo/swiper][counsel]]
    #+begin_src emacs-lisp
