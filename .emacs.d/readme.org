@@ -120,6 +120,10 @@
     #+begin_src emacs-lisp
       (delete-selection-mode t)
     #+end_src
+** Disable emacs build in version control
+    #+begin_src emacs-lisp
+      (setq vc-handled-backends nil)
+    #+end_src
 ** Fix shell commands on osx
     OS X has an issue with picking up the right system env
     Explictly setting it here (So shell-command and buddies can use it)
@@ -144,6 +148,10 @@
      (setq-default indent-tabs-mode nil)
      (setq-default tab-width 2)
    #+end_src
+** Stop blinking cursor
+   #+begin_src emacs-lisp
+     (blink-cursor-mode 0)
+   #+end_src
 ** Stop making annoying sounds
     The error sounds just hurts my ears...
     #+begin_src emacs-lisp
@@ -159,34 +167,11 @@
            backup-directory-alist `((".*" . ,temporary-file-directory))
            auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
    #+end_src
-** Stop blinking cursor
-   #+begin_src emacs-lisp
-     (blink-cursor-mode 0)
-   #+end_src
 * Major Modes
-** [[https://github.com/felipeochoa/rjsx-mode][Rjsx mode]]
+** css
    #+begin_src emacs-lisp
-     (use-package rjsx-mode
-       :config
-       (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
-       (setq js-indent-level 2)
-       (defun my-js-mode-hook ()
-         (dev-mode t))
-       (add-hook 'rjsx-mode-hook 'my-js-mode-hook))
-   #+end_src
-** [[http://web-mode.org/][Web mode]]
-   #+begin_src emacs-lisp
-     (use-package web-mode
-       :config
-       (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-       (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-       (add-to-list 'auto-mode-alist '("\\.hbs\\'" . web-mode))
-       (setq web-mode-markup-indent-offset 2
-             web-mode-css-indent-offset 2
-             web-mode-code-indent-offset 2)
-       (defun my-web-mode-hook ()
-         (dev-mode t))
-       (add-hook 'web-mode-hook  'my-web-mode-hook))
+     (setq css-indent-offset 2)
+     (add-hook 'css-mode-hook 'dev-mode)
    #+end_src
 ** [[https://magit.vc/][Magit]]
    #+begin_src emacs-lisp
@@ -199,10 +184,6 @@
 *** Settings
     #+begin_src emacs-lisp
       (setq org-hide-emphasis-markers t)
-    #+end_src
-*** Disable emacs build in version control
-    #+begin_src emacs-lisp
-      (setq vc-handled-backends nil)
     #+end_src
 *** [[https://github.com/sabof/org-bullets][org bullets]]
     #+begin_src emacs-lisp
@@ -235,6 +216,16 @@
 
         (add-hook 'org-mode-hook 'theme-org-mode-hook)
     #+end_src
+** [[https://github.com/felipeochoa/rjsx-mode][Rjsx mode]]
+   #+begin_src emacs-lisp
+     (use-package rjsx-mode
+       :config
+       (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
+       (setq js-indent-level 2)
+       (defun my-js-mode-hook ()
+         (dev-mode t))
+       (add-hook 'rjsx-mode-hook 'my-js-mode-hook))
+   #+end_src
 ** Ruby
   #+begin_src emacs-lisp
     (defun my-ruby-mode-hook ()
@@ -242,14 +233,6 @@
 
     (add-hook 'ruby-mode-hook 'my-ruby-mode-hook)
   #+end_src
-** Terminal
-   #+begin_src emacs-lisp
-     (defun my-term-mode-hook ()
-       "Load when term-mode is loaded."
-       (define-key term-raw-map (kbd "C-c C-y") 'term-paste)) ;; paste clipboard into terminal
-
-     (add-hook 'term-mode-hook 'my-term-mode-hook)
-   #+end_src
 ** SQL
 *** format
 **** Dependencies
@@ -270,10 +253,27 @@
 
        (add-hook 'sql-mode-hook 'my-sql-mode-hook)
      #+end_src
-** css
+** Terminal
    #+begin_src emacs-lisp
-     (setq css-indent-offset 2)
-     (add-hook 'css-mode-hook 'dev-mode)
+     (defun my-term-mode-hook ()
+       "Load when term-mode is loaded."
+       (define-key term-raw-map (kbd "C-c C-y") 'term-paste)) ;; paste clipboard into terminal
+
+     (add-hook 'term-mode-hook 'my-term-mode-hook)
+   #+end_src
+** [[http://web-mode.org/][Web mode]]
+   #+begin_src emacs-lisp
+     (use-package web-mode
+       :config
+       (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+       (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+       (add-to-list 'auto-mode-alist '("\\.hbs\\'" . web-mode))
+       (setq web-mode-markup-indent-offset 2
+             web-mode-css-indent-offset 2
+             web-mode-code-indent-offset 2)
+       (defun my-web-mode-hook ()
+         (dev-mode t))
+       (add-hook 'web-mode-hook  'my-web-mode-hook))
    #+end_src
 * Minor Modes
 ** [[http://company-mode.github.io/][Company]]
@@ -291,6 +291,11 @@
      (use-package emojify)
    #+end_src
 
+** [[https://github.com/emacsorphanage/git-gutter-fringe][Git gutter fringe]]
+   #+begin_src emacs-lisp
+     (use-package git-gutter-fringe)
+   #+end_src
+
 ** [[https://github.com/DarthFennec/highlight-indent-guides][Highlight indent guides]]
     #+begin_src emacs-lisp
       (use-package highlight-indent-guides
@@ -304,11 +309,6 @@
    #+begin_src emacs-lisp
      (use-package yafolding)
    #+end_src
-** [[https://github.com/emacsorphanage/git-gutter-fringe][Git gutter fringe]]
-   #+begin_src emacs-lisp
-     (use-package git-gutter-fringe)
-   #+end_src
-
 * Global (Modes)
 ** [[https://github.com/abo-abo/ace-window][ace-window]]
 
@@ -348,19 +348,9 @@
        ("C-c s k" . ag-kill-buffers))
    #+end_src
 
-** [[https://github.com/bbatsov/projectile][projectile]]
+** [[https://github.com/domtronn/all-the-icons.el][all the icons]]
    #+begin_src emacs-lisp
-     (use-package projectile
-       :config
-       (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
-       (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-       (projectile-mode 1))
-   #+end_src
-** [[https://github.com/justbur/emacs-which-key][which-key]]
-   #+begin_src emacs-lisp
-     (use-package which-key
-       :config
-       (which-key-mode 1))
+     (use-package all-the-icons)
    #+end_src
 ** [[https://github.com/abo-abo/swiper][ivy and family]]
    - [[https://github.com/abo-abo/swiper/wiki/Dont-open-directory-mode][don't open directory mode]]
@@ -407,14 +397,24 @@
        :requires (all-the-icons ivy ivy-rich)
        :config (all-the-icons-ivy-rich-mode 1))
    #+end_src
+** [[https://github.com/bbatsov/projectile][projectile]]
+   #+begin_src emacs-lisp
+     (use-package projectile
+       :config
+       (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+       (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+       (projectile-mode 1))
+   #+end_src
 ** [[https://github.com/kaz-yos/reveal-in-osx-finder][reveal in osx finder]]
    #+begin_src emacs-lisp
      (use-package reveal-in-osx-finder
        :bind ("C-c z" . reveal-in-osx-finder))
    #+end_src
-** [[https://github.com/domtronn/all-the-icons.el][all the icons]]
+** [[https://github.com/justbur/emacs-which-key][which-key]]
    #+begin_src emacs-lisp
-     (use-package all-the-icons)
+     (use-package which-key
+       :config
+       (which-key-mode 1))
    #+end_src
 * My Functions
 ** Cleanup file
