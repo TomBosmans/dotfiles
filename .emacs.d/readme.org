@@ -353,6 +353,7 @@
      When enable "Don't open directory" mode, ivy-mode will only open file and don't open directory. if user want to open dirctory, another key should typed, for example: "C-f". This mode is simple and predictable.
    #+begin_src emacs-lisp
      (use-package ivy
+       :bind ("C-s" . swiper)
        :config
        (ivy-mode 1)
        (setq ivy-extra-directories nil)
