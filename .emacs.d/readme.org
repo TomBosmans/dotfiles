@@ -238,7 +238,7 @@
 ** Ruby
   #+begin_src emacs-lisp
     (defun my-ruby-mode-hook ()
-      (dev-mode t))
+      (dev-mode 1))
 
     (add-hook 'ruby-mode-hook 'my-ruby-mode-hook)
   #+end_src
@@ -438,30 +438,46 @@
    Also recommended to use fira code font, although it does work with other fonts.
    #+begin_src emacs-lisp
      (defun dev-setup ()
+       ;; show matching parenthesis locally
+       (make-local-variable 'show-paren-mode)
+       (setq show-paren-mode t)
+       ;; spell correct in comments
+       (flyspell-prog-mode)
+       ;; display line numbers
        (display-line-numbers-mode 1)
+       ;; It change all cursor movement/edit commands to stop in-between the “camelCase” words.
        (subword-mode 1)
+       ;; highlight current line/row
        (hl-line-mode 1)
+       ;; autocomplete
        (company-mode 1)
+       ;; show symbols in a neat way =>, >=, ==, ...
        (fira-code-mode 1)
+       ;; highlight indents with dots.
        (highlight-indent-guides-mode 1)
-       (yafolding-mode 1)
+       ;; show git changes on the side.
        (git-gutter-mode 1)
-       (toggle-truncate-lines)
+       ;; do not wrap!
+       (setq truncate-lines t)
+       ;; remove trailing white space and turn tabs into spaces
        (cleanup-file-on-save)
-       ;; keybindings
+       ;; code folding.
+       (yafolding-mode 1)
        (local-set-key (kbd "C-M-return") 'yafolding-toggle-all)
        (local-set-key (kbd "C-return") 'yafolding-toggle-element))
 
      (defun dev-teardown ()
-       (display-line-numbers-mode 0)
-       (subword-mode 0)
-       (hl-line-mode 0)
-       (company-mode 0)
-       (fira-code-mode 0)
-       (yafolding-mode 0)
-       (highlight-indent-guides-mode 0)
-       (git-gutter-mode 0)
-       (toggle-truncate-lines)
+       (setq show-paren-mode nil)
+       (flyspell-mode -1) ;; disable flyspell-prog-mode
+       (display-line-numbers-mode -1)
+       (subword-mode -1)
+       (hl-line-mode -1)
+       (company-mode -1)
+       (fira-code-mode -1)
+       (yafolding-mode -1)
+       (highlight-indent-guides-mode -1)
+       (git-gutter-mode -1)
+       (setq truncate-lines nil)
        (stop-cleanup-file-on-save))
 
      (define-minor-mode dev-mode
