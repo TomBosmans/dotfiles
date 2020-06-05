@@ -273,8 +273,14 @@
    #+end_src
 * Minor Modes
 ** [[http://company-mode.github.io/][Company]]
+   tng = tab and go
    #+begin_src emacs-lisp
-     (use-package company)
+     (use-package company
+       :config
+       (company-tng-configure-default)
+       (setq company-idle-delay 0
+             company-minimum-prefix-length 1
+             company-selection-wrap-around t))
    #+end_src
 ** [[https://github.com/iqbalansari/emacs-emojify][Emojify]]
    #+begin_src emacs-lisp
