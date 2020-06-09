@@ -73,11 +73,13 @@ Now we can setup [[https://github.com/emacs-dashboard/emacs-dashboard][dashboard
     (setq dashboard-banner-logo-title "Welcome to Emacs Dashboard"
           dashboard-startup-banner "~/dotfiles/assets/banner.png"
           dashboard-center-content nil
-          dashboard-show-shortcuts nil
+          dashboard-show-shortcuts t
           dashboard-set-heading-icons t
           dashboard-set-file-icons t
-          dashboard-items '((recents  . 5)
-                            (projects . 20))
+          dashboard-items '((recents  . 3)
+                            (projects . 20)
+                            (bookmarks . 20)
+                            (agenda . 20))
           dashboard-set-navigator t))
 #+end_src
 
