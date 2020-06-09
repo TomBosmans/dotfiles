@@ -180,6 +180,10 @@ Just ripped it from [[https://github.com/pjaspers/emacs/blob/master/customizatio
         auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 #+end_src
 
+** open url from pointer
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-c l o") 'browse-url-at-point)
+#+end_src
 * Major Modes
 ** css
 #+begin_src emacs-lisp
