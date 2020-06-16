@@ -1,12 +1,5 @@
 * Package Management
 We will be using [[https://github.com/raxod502/straight.el][Straight]] as our package manager.
-- Here are some variables you may be interested in (some of them must be set before the bootstrap code runs, if they might affect how straight.el itself is loaded):
-  |----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-  | straight-repository-branch       | to get the latest version of straight.el from the develop branch, rather than the default master which is updated less frequently but which is ostensibly more stable.                        |
-  | straight-check-for-modifications | to configure an alternate way for straight.el to check for modifications made to package source code, rather than the default (which is 100% reliable, but has a minor cost to startup time). |
-  | straight-use-package-by-default  | if you use use-package, then this makes each use-package form also invoke straight.el to install the package, unless otherwise specified.                                                     |
-  | straight-vc-git-default-protocol | by default, straight.el clones over HTTPS. If you need packages from private Git repositories in your configuration, then you might want to use SSH instead.                                  |
-
 #+begin_src emacs-lisp
   (defvar bootstrap-version)
   (let ((bootstrap-file
@@ -21,6 +14,17 @@ We will be using [[https://github.com/raxod502/straight.el][Straight]] as our pa
         (eval-print-last-sexp)))
     (load bootstrap-file nil 'nomessage))
 #+end_src
+
+- Here are some variables you may be interested in (some of them must be set before the bootstrap code runs, if they might affect how straight.el itself is loaded):
+
+  - straight-repository-branch
+    to get the latest version of straight.el from the develop branch, rather than the default master which is updated less frequently but which is ostensibly more stable.
+  - straight-check-for-modifications
+    to configure an alternate way for straight.el to check for modifications made to package source code, rather than the default (which is 100% reliable, but has a minor cost to startup time).
+  - straight-use-package-by-default
+    if you use use-package, then this makes each use-package form also invoke straight.el to install the package, unless otherwise specified.
+  - straight-vc-git-default-protocol
+    by default, straight.el clones over HTTPS. If you need packages from private Git repositories in your configuration, then you might want to use SSH instead.
 
 ** Install packages
 Out of the box, you can install any package listed on MELPA, GNU ELPA, or Emacsmirror, which is to say any package in existence. (Although MELPA is used as a package listing, packages are installed by cloning their Git repositories rather than by downloading tarballs like package.el does.) To install a package temporarily (until you restart Emacs), run M-x straight-use-package and select the package you want. To install a package permanently, place a call to straight-use-package in your init-file, like:
@@ -185,6 +189,12 @@ Just ripped it from [[https://github.com/pjaspers/emacs/blob/master/customizatio
 #+begin_src emacs-lisp
   (global-set-key (kbd "C-c l o") 'browse-url-at-point)
 #+end_src
+
+** replace regex
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-c r") 'replace-regexp)
+#+end_src
+
 * Major Modes
 ** css
 #+begin_src emacs-lisp
@@ -206,6 +216,8 @@ Just ripped it from [[https://github.com/pjaspers/emacs/blob/master/customizatio
     (emojify-mode 1)
     (org-indent-mode 1)
     (olivetti-mode 1)
+    (flyspell-mode 1)
+    (company-mode 1)
     (read-only-mode 1) ;; C-x C-q to toggle
     (setq olivetti-body-width 140))
 
@@ -249,7 +261,7 @@ Finally, we set up a nice proportional font, in different sizes, for the headlin
 #+begin_src emacs-lisp-test
   (let* ((variable-tuple '(:font "Arial Black"))
          (base-font-color     (face-foreground 'default nil 'default))
-         (headline           `(:inherit default :weight bold :foreground ,base-font-color)))
+         (headline           `(:inherit default :weight bold :foreground , base-font-color)))
 
     (custom-theme-set-faces
      'user
@@ -299,6 +311,7 @@ After all the changes above, you will have nice, proportional fonts in your Org 
 #+end_src
 
 *** Agenda
+
 | C-c C-s       | schedule todo      |
 | alt-shift-tab | create todo header |
 | C-c o a       | open agenda menu   |
@@ -308,6 +321,7 @@ After all the changes above, you will have nice, proportional fonts in your Org 
   (setq org-log-done t
         org-agenda-files (list "~/dropbox/org/"))
 #+end_src
+
 ** [[https://github.com/felipeochoa/rjsx-mode][Rjsx mode]]
 #+begin_src emacs-lisp
   (use-package rjsx-mode
@@ -321,6 +335,7 @@ After all the changes above, you will have nice, proportional fonts in your Org 
 
 ** Ruby
 #+begin_src emacs-lisp
+  (setq ruby-insert-encoding-magic-comment nil)
   (defun my-ruby-mode-hook ()
     (dev-mode 1))
 
@@ -382,6 +397,7 @@ After all the changes above, you will have nice, proportional fonts in your Org 
     :config
     (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 #+end_src
+
 * Minor Modes
 ** [[http://company-mode.github.io/][Company]]
 tng = tab and go
@@ -497,7 +513,8 @@ make sure you have installed [[https://github.com/ggreer/the_silver_searcher][th
 #+begin_src emacs-lisp
   (use-package counsel
     :requires (ivy)
-    :config (counsel-mode 1))
+    :config (counsel-mode 1)
+    (global-set-key (kbd "C-c y") 'counsel-yank-pop))
 #+end_src
 
 *** [[https://github.com/Yevgnen/ivy-rich][ivy-rich]]
