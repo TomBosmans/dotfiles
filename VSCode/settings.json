@@ -1,0 +1,41 @@
+{
+    "workbench.colorTheme": "Nord",
+
+    // Controls the sizing of editor groups when splitting them.
+    // - distribute: Splits all the editor groups to equal parts.
+    // - split: Splits the active editor group to equal parts.
+    "workbench.editor.splitSizing": "split",
+
+    // Controls how the editor should render whitespace characters.
+    // - none
+    // - boundary: Render whitespace characters except for single spaces between words.
+    // - selection: Render whitespace characters only on selected text.
+    // - all
+    "editor.renderWhitespace": "boundary",
+
+    // Controls whether selections should have rounded corners.
+    "editor.roundedSelection": false,
+
+    // Render vertical rulers after a certain number of monospace characters. Use multiple values for multiple rulers. No rulers are drawn if array is empty.
+    "editor.rulers": [80],
+
+    // The cursor style.
+    "editor.cursorStyle": "block",
+    "editor.cursorBlinking": "solid",
+    "terminal.integrated.cursorBlinking": false,
+
+    // clean the right side
+    "editor.scrollbar.verticalScrollbarSize": 0,
+    "editor.scrollbar.horizontalScrollbarSize": 0,
+    "editor.minimap.enabled": false,
+    "workbench.statusBar.visible": true,
+
+    // clean up the left side
+    "workbench.activityBar.visible": false,
+
+    // make groups work better
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromQuickOpen": true,
+    "explorer.openEditors.visible": 0,
+    "workbench.editor.showTabs": false,
+}
