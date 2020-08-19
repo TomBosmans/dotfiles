@@ -3,3 +3,5 @@
 	name = Tom Bosmans
 [core]
 	excludesfile = ~/.gitignore_global
+[gui]
+	recentrepo = /Users/tombosmans/solvace

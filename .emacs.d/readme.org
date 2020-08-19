@@ -195,6 +195,24 @@ Just ripped it from [[https://github.com/pjaspers/emacs/blob/master/customizatio
   (global-set-key (kbd "C-c r") 'replace-regexp)
 #+end_src
 
+** beacon
+#+begin_src emacs-lisp
+  (use-package beacon
+    :config
+    (beacon-mode 1)
+    (setq beacon-blink-delay 0.2
+          beacon-blink-duration 0.5
+          beacon-blink-when-window-changes nil
+          beacon-blink-when-window-scrolls nil
+          beacon-color "#ebcb8b"
+          beacon-size 50))
+#+end_src
+
+** y-or-n-p
+#+begin_src emacs-lisp
+  (defalias 'yes-or-no-p 'y-or-n-p)
+#+end_src
+
 * Major Modes
 ** css
 #+begin_src emacs-lisp
@@ -217,7 +235,6 @@ Just ripped it from [[https://github.com/pjaspers/emacs/blob/master/customizatio
     (org-indent-mode 1)
     (olivetti-mode 1)
     (flyspell-mode 1)
-    (company-mode 1)
     (read-only-mode 1) ;; C-x C-q to toggle
     (setq olivetti-body-width 140))
 
@@ -254,7 +271,7 @@ Let's make links look better
 #+begin_src emacs-lisp
   (custom-theme-set-faces
    'user
-   '(org-link ((t (:underline nil :foreground "#B48EAD")))))
+   '(org-link ((t (:overline t :underline t :foreground "#B48EAD" :weight bold)))))
 #+end_src
 
 Finally, we set up a nice proportional font, in different sizes, for the headlines. The fonts listed will be tried in sequence, and the first one found will be used. Feel free to add your own favorite font:
@@ -310,6 +327,21 @@ After all the changes above, you will have nice, proportional fonts in your Org 
    '(org-verbatim ((t (:inherit (shadow fixed-pitch))))))
 #+end_src
 
+allow setting size for inline images
+#+begin_src emacs-lisp
+  (setq org-image-actual-width nil)
+#+end_src
+
+#+begin_src emacs-lisp
+  (setq org-emphasis-alist
+        '(("*" bold)
+          ("/" italic)
+          ("_" underline)
+          ("+" (:strike-through t))
+          ("=" (:background "#bf616a" :foreground "#eceff4"))
+          ("~" (:background "#a3be8c" :foreground "#eceff4"))))
+#+end_src
+
 *** Agenda
 
 | C-c C-s       | schedule todo      |
@@ -318,8 +350,29 @@ After all the changes above, you will have nice, proportional fonts in your Org 
 
 #+begin_src emacs-lisp
   (global-set-key (kbd "C-c o a") 'org-agenda)
-  (setq org-log-done t
-        org-agenda-files (list "~/dropbox/org/"))
+  (setq org-agenda-files (list "~/dropbox/org/"))
+#+end_src
+
+let's style our todo keywords!
+#+begin_src emacs-lisp
+  (let ((red "#bf616a")
+        (orange "#d08770")
+        (yellow "#ebcb8b")
+        (green "#a3be8c")
+        (purple "#b48ead")
+        (blue "#5e81ac")
+        (white "#eceff4"))
+
+        (setq org-todo-keyword-faces `(("TODO" . ,yellow)
+                                   ("PLAYING" . (:underline t :overline t :foreground ,purple :weight bold))
+                                   ("PLANNED" . (:underline t :overline t :foreground ,orange :weight bold))
+                                   ("FINISHED" .(:underline t :overline t :foreground ,green :weight bold))
+                                   ("WATCHED" . (:underline t :overline t :foreground ,green :weight bold))
+                                   ("STOPPED" . (:strike-through t :underline t :overline t :foreground ,red :weight bold))
+                                   ("IN-PROGRESS" . ,orange)
+                                   ("WAITING" . ,purple)3
+                                   ("CANCELED" . ,red)
+                                   ("DONE" . ,green))))
 #+end_src
 
 ** [[https://github.com/felipeochoa/rjsx-mode][Rjsx mode]]
@@ -399,17 +452,6 @@ After all the changes above, you will have nice, proportional fonts in your Org 
 #+end_src
 
 * Minor Modes
-** [[http://company-mode.github.io/][Company]]
-tng = tab and go
-#+begin_src emacs-lisp
-  (use-package company
-    :config
-    (company-tng-configure-default)
-    (setq company-idle-delay 0
-          company-minimum-prefix-length 1
-          company-selection-wrap-around t))
-#+end_src
-
 ** [[https://github.com/iqbalansari/emacs-emojify][Emojify]]
 #+begin_src emacs-lisp
   (use-package emojify)
@@ -560,6 +602,23 @@ make sure you have installed [[https://github.com/ggreer/the_silver_searcher][th
     (which-key-mode 1))
 #+end_src
 
+** [[https://github.com/magnars/expand-region.el][expand-region]]
+#+begin_src emacs-lisp
+  (use-package expand-region
+    :init
+    (global-set-key (kbd "C-=") 'er/expand-region))
+#+end_src
+
+** [[https://github.com/magnars/multiple-cursors.el][multiple-cursors]]
+#+begin_src emacs-lisp
+  (use-package multiple-cursors
+    :init
+    (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+    (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+    (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+    (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this))
+#+end_src
+
 * My Functions
 ** Cleanup file
 removes tabs and white space.
@@ -583,9 +642,6 @@ For fira code mode to work correctly you need to install the symbol font form ~/
 Also recommended to use fira code font, although it does work with other fonts.
 #+begin_src emacs-lisp
   (defun dev-setup ()
-    ;; show matching parenthesis locally
-    (make-local-variable 'show-paren-mode)
-    (setq show-paren-mode t)
     ;; spell correct in comments
     (flyspell-prog-mode)
     ;; display line numbers
@@ -594,8 +650,6 @@ Also recommended to use fira code font, although it does work with other fonts.
     (subword-mode 1)
     ;; highlight current line/row
     (hl-line-mode 1)
-    ;; autocomplete
-    (company-mode 1)
     ;; show symbols in a neat way =>, >=, ==, ...
     (fira-code-mode 1)
     ;; highlight indents with dots.
@@ -612,12 +666,10 @@ Also recommended to use fira code font, although it does work with other fonts.
     (local-set-key (kbd "C-return") 'yafolding-toggle-element))
 
   (defun dev-teardown ()
-    (setq show-paren-mode nil)
     (flyspell-mode -1) ;; disable flyspell-prog-mode
     (display-line-numbers-mode -1)
     (subword-mode -1)
     (hl-line-mode -1)
-    (company-mode -1)
     (fira-code-mode -1)
     (yafolding-mode -1)
     (highlight-indent-guides-mode -1)
@@ -654,3 +706,4 @@ Also recommended to use fira code font, although it does work with other fonts.
   (global-set-key (kbd "C-c t") 'open-console)
   (global-set-key (kbd "C-c T") 'open-named-term)
 #+end_src
+
