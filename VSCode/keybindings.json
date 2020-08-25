@@ -1,6 +1,5 @@
-
 [
-{ "key": "ctrl+0",                 "command": "workbench.action.focusSideBar" },
+{ "key": "ctrl+0",                "command": "workbench.action.focusSideBar" },
 { "key": "ctrl+1",                "command": "workbench.action.focusFirstEditorGroup" },
 { "key": "ctrl+2",                "command": "workbench.action.focusSecondEditorGroup" },
 { "key": "ctrl+3",                "command": "workbench.action.focusThirdEditorGroup" },
@@ -18,4 +17,12 @@
 { "key": "ctrl+-",                "command": "editor.action.smartSelect.shrink",
                                      "when": "editorTextFocus" },
 { "key": "ctrl+x left",           "command": "workbench.action.navigateBack" }, // Rebind so it doesn't conflict with undo_expand_region
+
+{ "key": "ctrl-enter",            "command": "editor.toggleFold",
+                                     "when": "editorTextFocus && foldingEnabled" },
+
+// magit
+{ "key": "ctrl+m s",               "command": "magit.status" },
+{ "key": "ctrl+m b",               "command": "magit.blame-file" },
+{ "key": "ctrl+m d",               "command": "magit.diff-file" },
 ]
