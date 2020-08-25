@@ -9,6 +9,8 @@
 { "key": "ctrl+8",                "command": "workbench.action.focusEighthEditorGroup" },
 
 { "key": "ctrl+t",                "command": "workbench.action.focusPanel" },
+{ "key": "ctrl+t",                "command": "workbench.action.terminal.focusNextPane",
+                                     "when": "terminalFocus"}, // toggle between terminals
 { "key": "ctrl+x t",              "command": "workbench.action.toggleMaximizedPanel" },
 { "key": "ctrl+x j",              "command": "workbench.action.togglePanel" },
 
