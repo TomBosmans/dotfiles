@@ -75,4 +75,8 @@
     //  - mouseover: Only show the folding controls when the mouse is over the gutter.
     "editor.showFoldingControls": "always",
     "editor.multiCursorModifier": "ctrlCmd",
+    
+    // extensions
+    "tslint.autoFixOnSave": true,
+    "tslint.packageManager": "yarn",
 }

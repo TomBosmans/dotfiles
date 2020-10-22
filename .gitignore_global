@@ -2,3 +2,5 @@
 .ruby-version
 .solargraph.yml
 .DS_Store
+Session.vim
+.undodir/
