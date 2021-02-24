@@ -5,24 +5,42 @@ call plug#begin(stdpath('data') . '/plugged')
 Plug 'arcticicestudio/nord-vim'
 Plug 'neoclide/coc.nvim'
 Plug 'sheerun/vim-polyglot'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/lightline.vim'
 Plug 'qpkorr/vim-bufkill'
 Plug 'itchyny/vim-gitbranch'
 Plug 'voldikss/vim-floaterm'
-Plug 'kamykn/spelunker.vim'
 Plug 'kamykn/popup-menu.nvim'
 Plug 'APZelos/blamer.nvim'
+Plug 'machakann/vim-sandwich'
+Plug 'matze/vim-move'
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
 call plug#end()
 
+" Table mode {{{
+function! s:isAtStartOfLine(mapping)
+  let text_before_cursor = getline('.')[0 : col('.')-1]
+  let mapping_pattern = '\V' . escape(a:mapping, '\')
+  let comment_pattern = '\V' . escape(substitute(&l:commentstring, '%s.*$', '', ''), '\')
+  return (text_before_cursor =~? '^' . ('\v(' . comment_pattern . '\v)?') . '\s*\v' . mapping_pattern . '\v$')
+endfunction
+
+inoreabbrev <expr> <bar><bar>
+      \ <SID>isAtStartOfLine('\|\|') ?
+      \ '<c-o>:TableModeEnable<cr><bar><space><bar><left><left>' : '<bar><bar>'
+inoreabbrev <expr> __
+      \ <SID>isAtStartOfLine('__') ?
+      \ '<c-o>:silent! TableModeDisable<cr>' : '__'
+"}}}
+" Move {{{
+let g:move_key_modifier = 'C'
+" }}}
 " Blamer {{{
 let g:blamer_enabled = 1
-" }}}
-" Spelunker {{{
-" Zt: enable in local buffer
-" ZT: enable globally
-let g:enable_spelunker_vim = 0
+let g:blamer_template = '<author> | <author-time> | <summary> | #<commit-short>'
 " }}}
 " Airline {{{
 let g:lightline = {
@@ -37,21 +55,13 @@ let g:lightline = {
       \ }
 " }}}
 " FZF {{{
-let g:fzf_layout = { 'window': { 'width': 0.4, 'height': 0.6, 'yoffset': 0.1, 'xoffset': 0.5, 'border': "sharp" } }
-let g:fzf_preview_window = 'down:60%'
-let $FZF_DEFAULT_COMMAND = 'ag --hidden  -l -g ""'
-
+ let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8, 'yoffset': 0.1, 'xoffset': 0.5, 'border': "sharp" } }
+" let g:fzf_layout = { 'down': '20%' }
 set rtp+=/usr/local/opt/fzf
 " }}}
 " COC {{{
 let g:coc_global_extensions = [
-      \ 'coc-json',
       \ 'coc-tsserver',
-      \ 'coc-html',
-      \ 'coc-emmet',
-      \ 'coc-eslint',
-      \ 'coc-prettier',
-      \ 'coc-css'
       \ ]
 " Coc settings {{{
 
@@ -152,12 +162,12 @@ colorscheme nord
 set t_Co=256
 
 " use spaces instead of tabs
-set expandtab 
+set expandtab
 set tabstop=2
 set shiftwidth=2
 
 " show numbers on the left
-set number relativenumber 
+" set number relativenumber
 
 " highlight current row
 set cursorline
@@ -167,18 +177,25 @@ set nobackup
 set nowritebackup
 
 " Give more space for displaying messages.
-set cmdheight=2 
+set cmdheight=2
 set updatetime=300
 
 " Don't pass messages to |ins-completion-menu|.
-set shortmess+=c 
+set shortmess+=c
 
 " allow hidden buffers
-set hidden 
+set hidden
 
 " match os clipboard with vim
 set clipboard=unnamedplus
 set inccommand=split
+
+" Show leading whitespace that includes spaces, and trailing whitespace.
+highlight ExtraWhitespace ctermbg=darkRed guibg=darkRed
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+
+" Hide linenumbers in terminal
+autocmd TermOpen * setlocal nonumber norelativenumber
 " }}}
 " Autoread Files {{{
 " Set to auto read when a file is changed from the outside
@@ -195,10 +212,25 @@ let mapleader = ","
 
 nmap j gj
 nmap k gk
+nmap G Gzz
 
 nnoremap <leader>vr :FloatermNew nvim $MYVIMRC<CR>
 nnoremap <leader>sh :FloatermNew nvim ~/.zshrc<CR>
 nnoremap <leader>rl :source $MYVIMRC<CR>
+
+" tabs
+nnoremap t1 1gt<CR>
+nnoremap t2 2gt<CR>
+nnoremap t3 3gt<CR>
+nnoremap t4 4gt<CR>
+nnoremap t5 5gt<CR>
+nnoremap t6 6gt<CR>
+nnoremap t7 7gt<CR>
+nnoremap t8 8gt<CR>
+nnoremap t9 9gt<CR>
+nnoremap tn :tabnew<CR>
+nnoremap tc :tabclose<CR>
+nnoremap ts :tab split<CR>
 
 " manage windows
 nnoremap <C-x>k :BD<CR>
@@ -209,11 +241,24 @@ nnoremap <C-x>2 :split<CR>
 
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fb :Buffers<CR>
-nnoremap <leader>fp :GFiles<CR>
+nnoremap <leader>fg :GFiles?<CR>
 nnoremap <leader>ag :Ag<CR>
-nnoremap <leader>t :FloatermToggle<CR>
+nnoremap <leader>tt :FloatermToggle<CR>
+nnoremap <leader>nt :terminal<CR>
 nnoremap <leader>fm :FloatermNew vifm<CR>
-nnoremap <leader>lg :FloatermNew lazygit<CR>
+
+function! LazyGit()
+  :tabnew
+  :terminal lazygit
+  :startinsert
+endfunction
+
+nnoremap <leader>lg :call LazyGit()<CR>
+function! DB()
+  :tabnew
+  :DBUI
+endfunction
+nnoremap <leader>db :call DB()<CR>
 
 " Floaterm bindings {{{
 function s:floatermSettings()

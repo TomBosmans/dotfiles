@@ -79,4 +79,7 @@
     // extensions
     "tslint.autoFixOnSave": true,
     "tslint.packageManager": "yarn",
+    "[markdown]": {
+        "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+    },
 }
