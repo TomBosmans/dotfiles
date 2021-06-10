@@ -2,39 +2,30 @@
 
 " Plugins {{{
 call plug#begin(stdpath('data') . '/plugged')
-Plug 'arcticicestudio/nord-vim'
-Plug 'neoclide/coc.nvim'
-Plug 'sheerun/vim-polyglot'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'airblade/vim-gitgutter'
-Plug 'itchyny/lightline.vim'
-Plug 'qpkorr/vim-bufkill'
-Plug 'itchyny/vim-gitbranch'
-Plug 'voldikss/vim-floaterm'
-Plug 'kamykn/popup-menu.nvim'
-Plug 'APZelos/blamer.nvim'
-Plug 'machakann/vim-sandwich'
-Plug 'matze/vim-move'
-Plug 'tpope/vim-dadbod'
-Plug 'kristijanhusak/vim-dadbod-ui'
+  Plug 'arcticicestudio/nord-vim'
+
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+
+
+
+  Plug 'itchyny/lightline.vim'
+  Plug 'neoclide/coc.nvim'
+"  Plug 'sheerun/vim-polyglot'
+  Plug 'qpkorr/vim-bufkill'
+  Plug 'itchyny/vim-gitbranch'
+  Plug 'voldikss/vim-floaterm'
+  Plug 'kamykn/popup-menu.nvim'
+  Plug 'APZelos/blamer.nvim'
+  Plug 'machakann/vim-sandwich'
+  Plug 'matze/vim-move'
+
+  Plug 'tpope/vim-dadbod'
+  Plug 'kristijanhusak/vim-dadbod-ui'
+
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 call plug#end()
 
-" Table mode {{{
-function! s:isAtStartOfLine(mapping)
-  let text_before_cursor = getline('.')[0 : col('.')-1]
-  let mapping_pattern = '\V' . escape(a:mapping, '\')
-  let comment_pattern = '\V' . escape(substitute(&l:commentstring, '%s.*$', '', ''), '\')
-  return (text_before_cursor =~? '^' . ('\v(' . comment_pattern . '\v)?') . '\s*\v' . mapping_pattern . '\v$')
-endfunction
-
-inoreabbrev <expr> <bar><bar>
-      \ <SID>isAtStartOfLine('\|\|') ?
-      \ '<c-o>:TableModeEnable<cr><bar><space><bar><left><left>' : '<bar><bar>'
-inoreabbrev <expr> __
-      \ <SID>isAtStartOfLine('__') ?
-      \ '<c-o>:silent! TableModeDisable<cr>' : '__'
-"}}}
 " Move {{{
 let g:move_key_modifier = 'C'
 " }}}
@@ -156,6 +147,8 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " Mappings for CoCList
 " }}}}}}}}}
 " Settings {{{
+set splitright
+
 colorscheme nord
 
 " terminal emulator capable of displaying 256 colors
@@ -167,14 +160,10 @@ set tabstop=2
 set shiftwidth=2
 
 " show numbers on the left
-" set number relativenumber
+set number
 
 " highlight current row
 set cursorline
-
-" do not make backups
-set nobackup
-set nowritebackup
 
 " Give more space for displaying messages.
 set cmdheight=2
@@ -196,6 +185,8 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 
 " Hide linenumbers in terminal
 autocmd TermOpen * setlocal nonumber norelativenumber
+
+set splitbelow
 " }}}
 " Autoread Files {{{
 " Set to auto read when a file is changed from the outside
@@ -209,10 +200,6 @@ endif
 
 " With a map leader it's possible to do extra key combinations
 let mapleader = ","
-
-nmap j gj
-nmap k gk
-nmap G Gzz
 
 nnoremap <leader>vr :FloatermNew nvim $MYVIMRC<CR>
 nnoremap <leader>sh :FloatermNew nvim ~/.zshrc<CR>
@@ -232,13 +219,6 @@ nnoremap tn :tabnew<CR>
 nnoremap tc :tabclose<CR>
 nnoremap ts :tab split<CR>
 
-" manage windows
-nnoremap <C-x>k :BD<CR>
-nnoremap <C-x>0 :close<CR>
-nnoremap <C-x>1 :only<CR>
-nnoremap <C-x>3 :vsplit<CR>
-nnoremap <C-x>2 :split<CR>
-
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fb :Buffers<CR>
 nnoremap <leader>fg :GFiles?<CR>
@@ -254,6 +234,7 @@ function! LazyGit()
 endfunction
 
 nnoremap <leader>lg :call LazyGit()<CR>
+
 function! DB()
   :tabnew
   :DBUI

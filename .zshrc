@@ -1,3 +1,9 @@
+# node stuff
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+
+export PATH="/usr/local/sbin:$PATH"
+
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/tombosmans/.oh-my-zsh"
 eval "$(rbenv init -)"
@@ -32,6 +38,25 @@ export FZF_BASE=/usr/local/bin/fzf
 # export FZF_DEFAULT_OPTS="--reverse"
 export FZF_DEFAULT_COMMAND="ag --hidden -l -g ''"
 
+function fzf_gitbranches() {
+  git for-each-ref --sort='authordate:iso8601' --format='%(authordate:relative)%09%(refname:short)' refs/heads | fzf --tac --bind 'enter:execute(echo {} | rev | cut -f1 | rev | xargs git checkout)+abort,tab:execute-silent(echo {} | rev | cut -f1 | rev | pbcopy)+abort'
+  zle reset-prompt
+  zle redisplay
+}
+zle -N fzf_gitbranches
+bindkey "^y" fzf_gitbranches
+
+function fshow() {
+  git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"  | \
+   fzf --ansi --no-sort --reverse --tiebreak=index --preview \
+   'f() { set -- $(echo -- "$@" | grep -o "[a-f0-9]\{7\}"); [ $# -eq 0 ] || git show --color=always $1 ; }; f {}' \
+   --bind "j:down,k:up,ctrl-j:preview-down,ctrl-k:preview-up,ctrl-f:preview-page-down,ctrl-b:preview-page-up,q:abort,ctrl-m:execute:
+                (grep -o '[a-f0-9]\{7\}' | head -1 |
+                xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
+                {}
+FZF-EOF" --preview-window=right:60%
+}
+
 export BAT_THEME="Nord"
 export PROJECT_FOLDER=~/Projects
 
@@ -45,6 +70,7 @@ alias hr_tool="cd ~/Projects/hr_tool_expressjs/; nvim"
 alias magit="emacs -nw -q --load ~/magit/init.el"
 
 alias fetchTest="zsh ~/Projects/docket/scripts/fetch_test_db.sh"
+alias fetchQA="zsh ~/Projects/docket/scripts/fetch_qa_db.sh"
 alias fetchInt="zsh ~/Projects/docket/scripts/fetch_int_db.sh"
 
 start() {
@@ -110,7 +136,9 @@ local nord12_term="11"
 local nord13_term="3"
 local nord14_term="2"
 local nord15_term="5"
+
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
 " --color=bg+:$nord1_term,bg:$nord0_term,spinner:$nord9_term,hl:$nord3_term"\
 " --color=fg:$nord5_term,header:$nord8_term,info:$nord10_term,pointer:$nord9_term"\
 " --color=marker:$nord9_term,fg+:$nord6_term,prompt:$nord9_term,hl+:$nord9_term"
+
