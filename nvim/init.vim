@@ -1,5 +1,4 @@
 " vim:fdm=marker
-
 " Plugins {{{
 call plug#begin(stdpath('data') . '/plugged')
   Plug 'arcticicestudio/nord-vim'
@@ -7,11 +6,16 @@ call plug#begin(stdpath('data') . '/plugged')
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
 
-
-
   Plug 'itchyny/lightline.vim'
+  Plug 'bling/vim-bufferline'
+
+  Plug 'ryanoasis/vim-devicons'
+  Plug 'preservim/nerdtree' |
+        \ Plug 'Xuyuanp/nerdtree-git-plugin'
+
+  Plug 'airblade/vim-gitgutter'
   Plug 'neoclide/coc.nvim'
-"  Plug 'sheerun/vim-polyglot'
+  Plug 'sheerun/vim-polyglot'
   Plug 'qpkorr/vim-bufkill'
   Plug 'itchyny/vim-gitbranch'
   Plug 'voldikss/vim-floaterm'
@@ -22,8 +26,6 @@ call plug#begin(stdpath('data') . '/plugged')
 
   Plug 'tpope/vim-dadbod'
   Plug 'kristijanhusak/vim-dadbod-ui'
-
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 call plug#end()
 
 " Move {{{
@@ -33,17 +35,36 @@ let g:move_key_modifier = 'C'
 let g:blamer_enabled = 1
 let g:blamer_template = '<author> | <author-time> | <summary> | #<commit-short>'
 " }}}
-" Airline {{{
-let g:lightline = {
-      \ 'colorscheme': 'nord',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'gitbranch#name'
-      \ },
-      \ }
+" Lightline {{{
+ set noshowmode
+ autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
+ let g:lightline = {
+       \ 'colorscheme': 'nord',
+       \ 'active': {
+       \   'left': [ [ 'mode', 'paste' ],
+       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+       \ },
+       \ 'component_function': {
+       \   'gitbranch': 'gitbranch#name',
+       \   'filetype': 'MyFiletype',
+       \   'fileformat': 'MyFileformat',
+       \ },
+       \ 'tab_component_function': {
+       \   'tabnum': 'LightlineWebDevIcons',
+       \ },
+       \ }
+function! LightlineWebDevIcons(n)
+  let l:bufnr = tabpagebuflist(a:n)[tabpagewinnr(a:n) - 1]
+  return WebDevIconsGetFileTypeSymbol(bufname(l:bufnr))
+endfunction
+
+function! MyFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+endfunction
+
+function! MyFileformat()
+  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+endfunction
 " }}}
 " FZF {{{
  let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8, 'yoffset': 0.1, 'xoffset': 0.5, 'border': "sharp" } }
@@ -205,6 +226,7 @@ nnoremap <leader>vr :FloatermNew nvim $MYVIMRC<CR>
 nnoremap <leader>sh :FloatermNew nvim ~/.zshrc<CR>
 nnoremap <leader>rl :source $MYVIMRC<CR>
 
+nnoremap <C-n> :NERDTreeToggle<CR>
 " tabs
 nnoremap t1 1gt<CR>
 nnoremap t2 2gt<CR>
@@ -301,3 +323,4 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 " }}}}}}
+
