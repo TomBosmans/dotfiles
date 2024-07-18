@@ -1,0 +1,14 @@
+[core]
+  excludesfile = ~/.gitignore_global
+  editor = nvim
+
+[user]
+  name = tbosmans
+  email = tom.94.bosmans@gmail.com
+	signingkey = tom.94.bosmans@gmail.com
+
+[commit]
+	gpgsign = true
+
+[tag]
+  gpgsign = true
