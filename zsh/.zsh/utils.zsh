@@ -6,7 +6,11 @@ function add_file() {
 
 function add_plugin() {
   PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
-  # For plugins
+
+  if [ ! -d "$HOME/.zsh/plugins/$PLUGIN_NAME" ]; then
+    git clone "https://github.com/$1.git" "$HOME/.zsh/plugins/$PLUGIN_NAME"
+  fi
+
   add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || \
   add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh"
 }
