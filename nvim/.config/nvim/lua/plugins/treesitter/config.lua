@@ -12,7 +12,10 @@ return function()
       "json",
       "jsonc",
       "yaml",
+      "toml",
       "prisma",
+      "markdown",
+      "markdown_inline",
     },
     highlight = {
       enable = true,
