@@ -6,6 +6,12 @@ return function()
       theme = "catppuccin",
       component_separators = { left = '', right = '' },
       section_separators = { left = '', right = '' },
+      disabled_filetypes = {
+        winbar = {
+          "rest_nvim_result",
+          "http",
+        },
+      },
     },
     winbar = {
       lualine_c = {

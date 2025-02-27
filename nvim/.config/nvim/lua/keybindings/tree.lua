@@ -1,5 +1,5 @@
 require("which-key").register({
-  ["<space>t"] = { ":NeoTreeRevealToggle <CR>", "reveal in tree" },
+  ["<space>t"] = { ":Neotree toggle <CR>", "reveal in tree" },
   ["<leader>t"] = {
     "tree",
     f = { ":Neotree reveal <CR>", "files" },
