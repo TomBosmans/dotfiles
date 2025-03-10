@@ -1,10 +1,7 @@
-require("which-key").register({
-  ["<leader>T"] = {
-    name = "Treesitter",
-    p = { ":TSPlaygroundToggle <CR>", "toggle playground" },
-    i = { ":TSInstall ", "install", silent = false },
-    u = { ":TSUpdate <CR>", "update" },
-    h = { ":TSModuleInfo <CR>", "help" },
-    c = { ":TSContextToggle <CR>", "toggle context" },
-  },
+require("which-key").add({
+  { "<leader>T", group = "Treesitter", icon = "" },
+  { "<leader>Tp", ":TSPlaygroundToggle <CR>", desc = "toggle playground" },
+  { "<leader>Ti", ":TSInstall ", desc = "install", silent = false, icon = "󰇚" },
+  { "<leader>Tu", ":TSUpdate <CR>", desc = "update", icon = "󰚰" },
+  { "<leader>Tc", ":TSContextToggle <CR>", desc = "toggle context", },
 })

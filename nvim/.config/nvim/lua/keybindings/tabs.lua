@@ -1,17 +1,17 @@
-require("which-key").register({
-  ["t"] = {
-    name = "Tabs",
-    n = { ":tabnew <CR>", "new" },
-    c = { ":tabclose <CR>", "close" },
-    s = { ":tab split <CR>", "split" },
-    ["1"] = { "1gt<CR>", "goto tab 1" },
-    ["2"] = { "2gt<CR>", "goto tab 2" },
-    ["3"] = { "3gt<CR>", "goto tab 3" },
-    ["4"] = { "4gt<CR>", "goto tab 4" },
-    ["5"] = { "5gt<CR>", "goto tab 5" },
-    ["6"] = { "6gt<CR>", "goto tab 6" },
-    ["7"] = { "7gt<CR>", "goto tab 7" },
-    ["8"] = { "8gt<CR>", "goto tab 8" },
-    ["9"] = { "9gt<CR>", "goto tab 9" },
-  },
+require("which-key").add({
+  { "t", group = "Tabs" },
+
+  { "tn", ":tabnew <CR>", desc = "new" },
+  { "tc", ":tabclose <CR>", desc = "close" },
+  { "ts", ":tab split <CR>", desc = "split" },
+
+  { "t1", "1gt<CR>", desc = "goto tab 1" },
+  { "t2", "2gt<CR>", desc = "goto tab 2" },
+  { "t3", "3gt<CR>", desc = "goto tab 3" },
+  { "t4", "4gt<CR>", desc = "goto tab 4" },
+  { "t5", "5gt<CR>", desc = "goto tab 5" },
+  { "t6", "6gt<CR>", desc = "goto tab 6" },
+  { "t7", "7gt<CR>", desc = "goto tab 7" },
+  { "t8", "8gt<CR>", desc = "goto tab 8" },
+  { "t9", "9gt<CR>", desc = "goto tab 9" },
 })

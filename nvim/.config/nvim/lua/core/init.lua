@@ -63,9 +63,6 @@ vim.opt.swapfile = false
 vim.opt.list = true
 vim.opt.listchars = "space:⋅,tab:>-,eol:↴"
 
--- show whichkey instantly
-vim.opt.timeoutlen = 0
-
 -- statusline
 vim.o.ls = 3
 vim.o.ch = 0
@@ -76,4 +73,10 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     vim.api.nvim_set_option_value("formatprg", "jq", { scope = 'local' })
   end,
+})
+
+-- Show all .env.* files with syntax highlights.
+vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+  pattern = ".env.*",
+  command = "set filetype=sh"
 })

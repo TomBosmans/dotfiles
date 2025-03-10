@@ -1,8 +1,6 @@
-require("which-key").register({
-  ["<space>g"] = {
-    name = "goto",
-    d = { ":Telescope lsp_definitions <CR>", "lsp definition" },
-    i = { ":Telescope lsp_implementations <CR>", "lsp implementations" },
-    r = { ":Telescope lsp_references <CR>", "lsp references" },
-  },
+require("which-key").add({
+  { "<localleader>g", group = "goto" },
+  { "<localleader>gd", ":Telescope lsp_definitions <CR>", desc = "definition" },
+  { "<localleader>gi", ":Telescope lsp_implementations <CR>", desc = "implementation" },
+  { "<localleader>gr", ":Telescope lsp_references <CR>", desc = "reference" },
 })

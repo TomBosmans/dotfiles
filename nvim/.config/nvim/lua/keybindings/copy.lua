@@ -1,8 +1,6 @@
-require("which-key").register({
-  ["<leader>c"] = {
-    name = "Copy",
-    r = { ":let @+ = expand('%')<CR>", "relative path" },
-    a = { ":let @+ = expand('%:p')<CR>", "absolute path" },
-    n = { ":let @+ = expand('%:t')<CR>", "file name" },
-  },
+require("which-key").add({
+  { "<leader>c", group = "copy", icon = "" },
+  { "<leader>cr", ":let @+ = expand('%')<CR>", desc = "relative path", icon = ""},
+  { "<leader>ca", ":let @+ = expand('%:p')<CR>", desc = "absolute path", icon = ""},
+  { "<leader>cn", ":let @+ = expand('%:t')<CR>", desc = "file name", icon = ""},
 })
