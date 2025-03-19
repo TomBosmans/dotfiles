@@ -1,4 +1,9 @@
 return {
+  markdown_oxide = {},
+  prismals = {},
+  cssls = {},
+  jsonls = {},
+  eslint = {},
   vtsls = {
     settings = {
       vtsls = {
@@ -16,6 +21,9 @@ return {
           maxTsServerMemory = 8192,
         },
       },
+    },
+    initializationOptions = {
+      documentFormatting = false,
     },
   },
   lua_ls = {
@@ -35,7 +43,7 @@ return {
           },
         },
         format = {
-          enable = false,
+          enable = true,
         },
         telemetry = {
           enable = false,
