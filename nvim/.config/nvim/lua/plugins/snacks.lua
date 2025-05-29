@@ -5,5 +5,6 @@ return {
     notifier = { enable = true },
     indent = { enable = true },
     input = { enable = true },
-  }
+    zen = { enable = true },
+  },
 }

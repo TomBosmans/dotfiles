@@ -4,8 +4,9 @@ return {
   dependencies = {
     { "nvim-tree/nvim-web-devicons" },
     { "nvim-lua/plenary.nvim" },
-    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    { "nvim-telescope/telescope-fzf-native.nvim",    build = "make" },
     { "nvim-telescope/telescope-ui-select.nvim" },
+    { "nvim-telescope/telescope-live-grep-args.nvim" },
   },
   config = function()
     local telescope = require("telescope")
@@ -59,10 +60,10 @@ return {
 
       extensions = {
         fzf = {
-          fuzzy = true, -- false will only do exact matching
+          fuzzy = true,                   -- false will only do exact matching
           override_generic_sorter = true, -- override the generic sorter
-          override_file_sorter = true, -- override the file sorter
-          case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+          override_file_sorter = true,    -- override the file sorter
+          case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
           -- the default case_mode is "smart_case"
         },
         ["ui-select"] = {
@@ -73,5 +74,6 @@ return {
 
     telescope.load_extension("fzf")
     telescope.load_extension("ui-select")
+    telescope.load_extension("live_grep_args")
   end,
 }

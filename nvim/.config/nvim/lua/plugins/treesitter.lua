@@ -24,6 +24,7 @@ return {
         "markdown",
         "markdown_inline",
         "http",
+        "bash",
       },
       highlight = {
         enable = true,
@@ -31,4 +32,7 @@ return {
       },
     })
   end,
+  init = function()
+    vim.treesitter.language.register("bash", "shell")
+  end
 }

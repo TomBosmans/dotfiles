@@ -22,6 +22,15 @@ vim.opt.expandtab = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.opt_local.expandtab = true
+    vim.opt_local.tabstop = 2
+    vim.opt_local.shiftwidth = 2
+  end,
+})
+
 -- show line numbers, except in terminal
 vim.opt.number = true
 vim.opt.relativenumber = false
@@ -76,7 +85,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Show all .env.* files with syntax highlights.
-vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = ".env.*",
   command = "set filetype=sh"
 })

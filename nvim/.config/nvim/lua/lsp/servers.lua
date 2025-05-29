@@ -4,6 +4,7 @@ return {
   cssls = {},
   jsonls = {},
   eslint = {},
+  biome = {},
   vtsls = {
     settings = {
       vtsls = {
