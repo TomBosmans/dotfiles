@@ -1,0 +1,54 @@
+general {
+  colors = true
+  interval = 1
+  color_good = "#989898"
+  color_degraded = "#8c7f22"
+  color_bad = "#be2422"
+}
+
+order += "cpu_usage"
+order += "cpu_temperature 0"
+order += "cpu_temperature 1"
+order += "cpu_temperature 2"
+order += "memory"
+order += "volume master"
+order += "time"
+order += "run_watch proxy"
+
+volume master {
+	device = "default"
+	mixer = "Master"
+	mixer_idx = 0
+	format = "   %volume "
+	format_muted = "🔇 "
+}
+
+time {
+  format = " %d/%m/%Y %H:%M"
+}
+
+memory {
+  format = "RAM: %used/%total"
+}
+
+cpu_usage {
+  format = "CPU USAGE: %usage"
+}
+
+cpu_temperature 0 {
+  format = "CPU TEMP: %degrees °C"
+  path = "/sys/class/hwmon/hwmon4/temp1_input"
+  max_threshold = 90
+}
+
+cpu_temperature 1 {
+  format = "GPU(1) TEMP: %degrees °C"
+  path = "/sys/class/hwmon/hwmon3/temp1_input"
+  max_threshold = 90
+}
+
+cpu_temperature 2 {
+  format = "GPU(2) TEMP: %degrees °C"
+  path = "/sys/class/hwmon/hwmon2/temp1_input"
+  max_threshold = 90
+}
