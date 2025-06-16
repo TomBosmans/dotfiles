@@ -235,10 +235,11 @@ exec --no-startup-id setxkbmap -option ctrl:nocaps
 exec --no-startup-id feh --bg-scale ~/.config/i3/forrest.png
 
 # screenshot
-bindsym $mod+Shift+s exec --no-startup-id flameshot gui
+bindsym $mod+Shift+s exec --no-startup-id flameshot gui --clipboard
+bindsym $mod+Shift+a exec --no-startup-id sh -c 'flameshot gui --clipboard --silent && notify-send "📸 Screenshot copied to clipboard"'
 
 # lock screen
 bindsym $mod+shift+x exec --no-startup-id i3lock -i ~/.config/i3/forrest.png
 
 # compositor
-exec --no-startup-id picom
+exec_always --no-startup-id picom -b
