@@ -17,7 +17,7 @@ gaps inner 5
 gaps outer 1
 
 # hide the tiles around windows
-for_window [class="^.*"] border pixel 3
+for_window [class="^.*"] border pixel 0
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -239,3 +239,6 @@ bindsym $mod+Shift+s exec --no-startup-id flameshot gui
 
 # lock screen
 bindsym $mod+shift+x exec --no-startup-id i3lock -i ~/.config/i3/forrest.png
+
+# compositor
+exec --no-startup-id picom

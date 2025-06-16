@@ -32,12 +32,12 @@ configuration {
 
   selected-active-foreground:  @background;
   lightfg:                     @text;
-  separatorcolor:              @foreground;
+  separatorcolor:              @sapphire;
   urgent-foreground:           @red;
   alternate-urgent-background: @lightbg;
   lightbg:                     @mantle;
   background-color:            transparent;
-  border-color:                @foreground;
+  border-color:                @sapphire;
   normal-background:           @background;
   selected-urgent-background:  @red;
   alternate-active-background: @lightbg;
@@ -65,6 +65,7 @@ configuration {
 element {
     padding: 8px 16px ;
     spacing: 16px ;
+    border-radius: 16px;
     cursor:  pointer;
 }
 element normal.normal {
@@ -119,6 +120,7 @@ window {
     padding:          5;
     background-color: @background;
     border:           1;
+    border-radius:  12px;
 }
 mainbox {
     padding: 0;
