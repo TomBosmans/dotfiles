@@ -1,9 +1,18 @@
 [global]
 frame_color = "#8aadf4"
+frame_width = 1
 separator_color= frame
-highlight = "#8aadf4"
-font = Monospace 12
+highlight = "#c6a0f6"
 max_icon_size = 64
+width = 500
+corner_radius = 9
+icon_corner_radius = 9
+font = JetBrainsMono Nerd Font 14
+markup = full
+format = "<span size='14000' foreground='#cad3f5'><b>%s</b></span>\n<span size='10000' foreground='#b8c0e0'>%b</span>"
+separator_height = 1
+separator_color = auto
+padding = 12
 
 [urgency_low]
 background = "#24273a"
