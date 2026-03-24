@@ -1,4 +1,10 @@
 return {
+  ruby_lsp = {
+    init_options = {
+      formatter = 'standard',
+      linters = { 'standard' },
+    },
+  },
   markdown_oxide = {},
   prismals = {},
   cssls = {},
