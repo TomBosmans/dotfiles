@@ -1,0 +1,61 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "atlassian": {
+      "enabled": false,
+      "type": "remote",
+      "url": "https://mcp.atlassian.com/v1/mcp"
+    },
+    "chrome-devtools": {
+      "command": [
+        "chrome-devtools-mcp",
+        "--no-usage-statistics"
+      ],
+      "enabled": true,
+      "type": "local"
+    },
+    "github": {
+      "command": [
+        "sh",
+        "-c",
+        "GITHUB_PERSONAL_ACCESS_TOKEN=$(gh auth token) github-mcp-server stdio"
+      ],
+      "enabled": false,
+      "type": "local"
+    },
+    "gitlab": {
+      "command": [
+        "glab",
+        "mcp",
+        "serve"
+      ],
+      "enabled": false,
+      "type": "local"
+    },
+    "mermaid": {
+      "enabled": false,
+      "type": "remote",
+      "url": "https://mcp.mermaid.ai/mcp"
+    }
+  },
+  "model": "ollama/gemma4:e4b",
+  "provider": {
+    "ollama": {
+      "models": {
+        "gemma4": {
+          "_launch": true,
+          "name": "gemma4"
+        },
+        "gemma4:e4b": {
+          "_launch": true,
+          "name": "gemma4:e4b"
+        }
+      },
+      "name": "Ollama",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://127.0.0.1:11434/v1"
+      }
+    }
+  }
+}
