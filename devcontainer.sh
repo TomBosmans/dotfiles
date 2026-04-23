@@ -13,7 +13,7 @@ sudo apt-get install -y stow
 
 # --- Neovim ---
 # Install prebuilt release tarball
-sudo apt-get install -y wget curl
+sudo apt-get install -y wget curl luarocks make gcc
 NVIM_VERSION="v0.11.0"
 ARCH=$(uname -m)
 if [ "$ARCH" = "aarch64" ]; then
