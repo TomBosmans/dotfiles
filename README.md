@@ -9,6 +9,7 @@ Each folder is a stow package that can be installed independently.
 | Folder       | Application                                                        | Description                                                                 |
 | ------------ | ------------------------------------------------------------------ | --------------------------------------------------------------------------- |
 | `bat/`       | [bat](https://github.com/sharkdp/bat)                              | Syntax-highlighted cat replacement with Catppuccin themes                   |
+| `dunst/`     | [Dunst](https://dunst-project.org)                                 | Notification daemon configuration                                           |
 | `git/`       | [Git](https://git-scm.com)                                         | Global gitconfig and gitignore                                              |
 | `i3/`        | [i3](https://i3wm.org)                                             | Tiling window manager configuration                                         |
 | `kitty/`     | [Kitty](https://sw.kovidgoez.net/kitty/)                           | Terminal emulator with Catppuccin Macchiato color scheme                    |
