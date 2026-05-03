@@ -29,3 +29,12 @@ Install all packages:
 ```sh
 stow -r ~ */
 ```
+
+## Setup
+
+For a full system setup (install dependencies + stow configs), run the OS-specific script:
+
+```sh
+# macOS
+./scripts/macos.sh
+```
