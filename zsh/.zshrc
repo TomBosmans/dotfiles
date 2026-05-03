@@ -11,5 +11,6 @@ add_file "prompt.zsh"
 add_file "history.zsh"
 add_file "completion.zsh"
 add_file "tmux.zsh"
+add_file "secrets.zsh"
 
 eval "$(zoxide init zsh)"
