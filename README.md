@@ -22,6 +22,10 @@ Each folder is a stow package that can be installed independently.
 | `zathura/`   | [Zathura](https://pwmt.org/projects/zathura/)                      | Document viewer configuration                                               |
 | `zsh/`       | [Zsh](https://www.zsh.org)                                         | Shell configuration with aliases, completions, fzf, and syntax highlighting |
 
+## Dependencies
+
+All configs use [JetBrainsMono Nerd Font](https://www.nerdfonts.com/font-downloads) as the default font.
+
 ## Usage
 
 Install a single package:

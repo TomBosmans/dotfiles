@@ -22,6 +22,7 @@ brew install \
   opencode
 
 brew install --cask kitty
+brew install --cask font-jetbrains-mono-nerd-font
 
 # Stow dotfiles
 echo "Stowing dotfiles..."
