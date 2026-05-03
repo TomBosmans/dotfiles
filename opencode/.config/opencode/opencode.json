@@ -1,0 +1,41 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "atlassian": {
+      "enabled": false,
+      "type": "remote",
+      "url": "https://mcp.atlassian.com/v1/mcp"
+    },
+    "chrome-devtools": {
+      "command": [
+        "chrome-devtools-mcp",
+        "--no-usage-statistics"
+      ],
+      "enabled": false,
+      "type": "local"
+    },
+    "github": {
+      "command": [
+        "sh",
+        "-c",
+        "GITHUB_PERSONAL_ACCESS_TOKEN=$(gh auth token) github-mcp-server stdio"
+      ],
+      "enabled": false,
+      "type": "local"
+    },
+    "gitlab": {
+      "command": [
+        "glab",
+        "mcp",
+        "serve"
+      ],
+      "enabled": false,
+      "type": "local"
+    },
+    "mermaid": {
+      "enabled": false,
+      "type": "remote",
+      "url": "https://mcp.mermaid.ai/mcp"
+    }
+  }
+}
