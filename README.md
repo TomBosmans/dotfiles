@@ -47,4 +47,7 @@ For a full system setup (install dependencies + stow configs), run the OS-specif
 ```sh
 # macOS
 ./scripts/macos.sh
+
+# Debian/Ubuntu (devcontainers)
+./scripts/debian.sh
 ```
