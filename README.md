@@ -8,7 +8,7 @@ Each folder is a stow package that can be installed independently.
 
 | Folder       | Application                                                        | Description                                                                 |
 | ------------ | ------------------------------------------------------------------ | --------------------------------------------------------------------------- |
-| `bat/`       | [bat](https://github.com/sharkdp/bat)                              | Syntax-highlighted cat replacement with Catppuccin themes                   |
+| `bat/`       | [bat](https://github.com/sharkdp/bat)                              | Syntax-highlighted cat replacement with Catppuccin themes ([details](bat/.config/bat/README.md)) |
 | `dunst/`     | [Dunst](https://dunst-project.org)                                 | Notification daemon configuration                                           |
 | `git/`       | [Git](https://git-scm.com)                                         | Global gitconfig and gitignore                                              |
 | `i3/`        | [i3](https://i3wm.org)                                             | Tiling window manager configuration                                         |
@@ -18,7 +18,7 @@ Each folder is a stow package that can be installed independently.
 | `picom/`     | [picom](https://github.com/yshui/picom)                            | Compositor for X11                                                          |
 | `polybar/`   | [Polybar](https://github.com/polybar/polybar)                      | Status bar with Catppuccin theme and Spotify integration                    |
 | `rofi/`      | [Rofi](https://github.com/davatorium/rofi)                         | Application launcher configuration                                          |
-| `tmux/`      | [tmux](https://github.com/tmux/tmux)                               | Terminal multiplexer configuration                                          |
+| `tmux/`      | [tmux](https://github.com/tmux/tmux)                               | Terminal multiplexer configuration ([details](tmux/.config/tmux/README.md)) |
 | `zathura/`   | [Zathura](https://pwmt.org/projects/zathura/)                      | Document viewer configuration                                               |
 | `zsh/`       | [Zsh](https://www.zsh.org)                                         | Shell configuration with aliases, completions, fzf, and syntax highlighting |
 

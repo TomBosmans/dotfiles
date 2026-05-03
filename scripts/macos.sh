@@ -34,3 +34,13 @@ stow -t ~ \
   bat \
   kitty \
   opencode
+
+# Install tmux plugin manager
+if [ ! -d ~/.config/tmux/plugins/tpm ]; then
+  echo "Installing tmux plugin manager..."
+  git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+fi
+
+# Build bat theme cache
+echo "Building bat theme cache..."
+bat cache --build
