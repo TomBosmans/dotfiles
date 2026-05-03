@@ -14,6 +14,7 @@ Each folder is a stow package that can be installed independently.
 | `kitty/`     | [Kitty](https://sw.kovidgoez.net/kitty/)                           | Terminal emulator with Catppuccin Macchiato color scheme                    |
 | `nvim/`      | [Neovim](https://neovim.io)                                        | Full configuration with lazy.nvim, LSP, treesitter, telescope, and more    |
 | `opencode/`  | [OpenCode](https://opencode.ai)                                    | AI coding assistant configuration with MCP server integrations ([details](opencode/.config/opencode/README.md)) |
+| `picom/`     | [picom](https://github.com/yshui/picom)                            | Compositor for X11                                                          |
 | `tmux/`      | [tmux](https://github.com/tmux/tmux)                               | Terminal multiplexer configuration                                          |
 | `zsh/`       | [Zsh](https://www.zsh.org)                                         | Shell configuration with aliases, completions, fzf, and syntax highlighting |
 
