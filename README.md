@@ -17,6 +17,7 @@ Each folder is a stow package that can be installed independently.
 | `opencode/`  | [OpenCode](https://opencode.ai)                                    | AI coding assistant configuration with MCP server integrations ([details](opencode/.config/opencode/README.md)) |
 | `picom/`     | [picom](https://github.com/yshui/picom)                            | Compositor for X11                                                          |
 | `polybar/`   | [Polybar](https://github.com/polybar/polybar)                      | Status bar with Catppuccin theme and Spotify integration                    |
+| `rofi/`      | [Rofi](https://github.com/davatorium/rofi)                         | Application launcher configuration                                          |
 | `tmux/`      | [tmux](https://github.com/tmux/tmux)                               | Terminal multiplexer configuration                                          |
 | `zsh/`       | [Zsh](https://www.zsh.org)                                         | Shell configuration with aliases, completions, fzf, and syntax highlighting |
 
