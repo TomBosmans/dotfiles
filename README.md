@@ -1,0 +1,31 @@
+# dotfiles
+
+Personal dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/).
+
+## Structure
+
+Each folder is a stow package that can be installed independently.
+
+| Folder       | Application                                                        | Description                                                                 |
+| ------------ | ------------------------------------------------------------------ | --------------------------------------------------------------------------- |
+| `bat/`       | [bat](https://github.com/sharkdp/bat)                              | Syntax-highlighted cat replacement with Catppuccin themes                   |
+| `git/`       | [Git](https://git-scm.com)                                         | Global gitconfig and gitignore                                              |
+| `kitty/`     | [Kitty](https://sw.kovidgoez.net/kitty/)                           | Terminal emulator with Catppuccin Macchiato color scheme                    |
+| `nvim/`      | [Neovim](https://neovim.io)                                        | Full configuration with lazy.nvim, LSP, treesitter, telescope, and more    |
+| `opencode/`  | [OpenCode](https://opencode.ai)                                    | AI coding assistant configuration with MCP server integrations ([details](opencode/.config/opencode/README.md)) |
+| `tmux/`      | [tmux](https://github.com/tmux/tmux)                               | Terminal multiplexer configuration                                          |
+| `zsh/`       | [Zsh](https://www.zsh.org)                                         | Shell configuration with aliases, completions, fzf, and syntax highlighting |
+
+## Usage
+
+Install a single package:
+
+```sh
+stow -r ~ <folder>
+```
+
+Install all packages:
+
+```sh
+stow -r ~ */
+```
