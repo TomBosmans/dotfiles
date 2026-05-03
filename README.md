@@ -31,13 +31,13 @@ All configs use [JetBrainsMono Nerd Font](https://www.nerdfonts.com/font-downloa
 Install a single package:
 
 ```sh
-stow -r ~ <folder>
+stow -t ~ <folder>
 ```
 
 Install all packages:
 
 ```sh
-stow -r ~ */
+stow -t ~ */
 ```
 
 ## Setup
