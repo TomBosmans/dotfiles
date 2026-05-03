@@ -19,6 +19,7 @@ Each folder is a stow package that can be installed independently.
 | `polybar/`   | [Polybar](https://github.com/polybar/polybar)                      | Status bar with Catppuccin theme and Spotify integration                    |
 | `rofi/`      | [Rofi](https://github.com/davatorium/rofi)                         | Application launcher configuration                                          |
 | `tmux/`      | [tmux](https://github.com/tmux/tmux)                               | Terminal multiplexer configuration                                          |
+| `zathura/`   | [Zathura](https://pwmt.org/projects/zathura/)                      | Document viewer configuration                                               |
 | `zsh/`       | [Zsh](https://www.zsh.org)                                         | Shell configuration with aliases, completions, fzf, and syntax highlighting |
 
 ## Usage
