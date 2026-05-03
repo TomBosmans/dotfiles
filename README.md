@@ -15,6 +15,7 @@ Each folder is a stow package that can be installed independently.
 | `nvim/`      | [Neovim](https://neovim.io)                                        | Full configuration with lazy.nvim, LSP, treesitter, telescope, and more    |
 | `opencode/`  | [OpenCode](https://opencode.ai)                                    | AI coding assistant configuration with MCP server integrations ([details](opencode/.config/opencode/README.md)) |
 | `picom/`     | [picom](https://github.com/yshui/picom)                            | Compositor for X11                                                          |
+| `polybar/`   | [Polybar](https://github.com/polybar/polybar)                      | Status bar with Catppuccin theme and Spotify integration                    |
 | `tmux/`      | [tmux](https://github.com/tmux/tmux)                               | Terminal multiplexer configuration                                          |
 | `zsh/`       | [Zsh](https://www.zsh.org)                                         | Shell configuration with aliases, completions, fzf, and syntax highlighting |
 
