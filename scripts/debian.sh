@@ -6,6 +6,7 @@ echo "Installing packages..."
 apt-get update
 apt-get install -y \
   bat \
+  fd-find \
   fzf \
   zoxide \
   tmux \
@@ -39,6 +40,33 @@ if ! command -v nvim &>/dev/null; then
   tar -xzf "$NVIM_ARCHIVE" -C /opt
   ln -sf /opt/"${NVIM_ARCHIVE%.tar.gz}"/bin/nvim /usr/local/bin/nvim
   rm "$NVIM_ARCHIVE"
+fi
+
+# Install grpcurl
+if ! command -v grpcurl &>/dev/null; then
+  echo "Installing grpcurl..."
+  ARCH=$(dpkg --print-architecture)
+  if [ "$ARCH" = "arm64" ]; then
+    GRPCURL_ARCHIVE="grpcurl_linux_arm64.tar.gz"
+  else
+    GRPCURL_ARCHIVE="grpcurl_linux_amd64.tar.gz"
+  fi
+  curl -fLo /tmp/grpcurl.tar.gz "https://github.com/fullstorydev/grpcurl/releases/latest/download/${GRPCURL_ARCHIVE}"
+  tar -xzf /tmp/grpcurl.tar.gz -C /usr/local/bin grpcurl
+  rm /tmp/grpcurl.tar.gz
+fi
+
+# Install websocat
+if ! command -v websocat &>/dev/null; then
+  echo "Installing websocat..."
+  ARCH=$(dpkg --print-architecture)
+  if [ "$ARCH" = "arm64" ]; then
+    WEBSOCAT_BIN="websocat.aarch64-unknown-linux-musl"
+  else
+    WEBSOCAT_BIN="websocat.x86_64-unknown-linux-musl"
+  fi
+  curl -fLo /usr/local/bin/websocat "https://github.com/vi/websocat/releases/latest/download/${WEBSOCAT_BIN}"
+  chmod +x /usr/local/bin/websocat
 fi
 
 # Stow dotfiles

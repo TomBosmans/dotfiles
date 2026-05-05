@@ -15,10 +15,13 @@ brew install \
   eza \
   zoxide \
   bat \
+  fd \
   fzf \
   neovim \
   tmux \
   stow \
+  grpcurl \
+  websocat \
   opencode
 
 brew install --cask kitty
