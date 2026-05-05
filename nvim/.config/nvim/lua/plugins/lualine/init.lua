@@ -1,8 +1,68 @@
-return {
-  "hoob3rt/lualine.nvim",
-  dependencies = {
-    { "nvim-tree/nvim-web-devicons" },
+vim.pack.add({
+  "https://github.com/nvim-lualine/lualine.nvim",
+})
+
+require("lualine").setup({
+  options = {
+    theme = "auto",
+    component_separators = { left = "", right = "" },
+    section_separators = { left = "", right = "" },
+    disabled_filetypes = {
+      winbar = {
+        "rest_nvim_result",
+        "http",
+      },
+    },
   },
-  lazy = false,
-  config = require("plugins.lualine.config")
-}
+  winbar = {
+    lualine_c = {
+      {
+        "filetype",
+        icon_only = true,
+        color = { bg = "#24273a" },
+      },
+      {
+        "filename",
+        padding = 0,
+        file_status = true,
+        newfile_status = false,
+        color = { bg = "#24273a" },
+        symbols = {
+          modified = "󰳻",
+          readonly = "",
+          unnamed = "[No Name]",
+          newfile = "[New]",
+        },
+      },
+    },
+  },
+  inactive_winbar = {
+    lualine_c = {
+      {
+        "filetype",
+        icon_only = true,
+      },
+      {
+        "filename",
+        file_status = true,
+        newfile_status = false,
+        padding = 0,
+        symbols = {
+          modified = "󰳻",
+          readonly = "",
+          unnamed = "[No Name]",
+          newfile = "[New]",
+        },
+      },
+    },
+  },
+  sections = {
+    lualine_a = { "mode" },
+    lualine_b = { "branch" },
+    lualine_c = { "diff", "diagnostics" },
+    lualine_x = { "lsp_status", require("opencode").statusline, },
+    lualine_y = { "progress" },
+    lualine_z = { "tabs" },
+  },
+  extensions = { "oil" },
+})

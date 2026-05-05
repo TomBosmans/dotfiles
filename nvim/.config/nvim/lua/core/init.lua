@@ -1,3 +1,4 @@
+require("core.providers")
 require("core.hover")
 
 -- spellcheck
@@ -44,7 +45,7 @@ vim.opt.clipboard = { "unnamed", "unnamedplus" }
 vim.opt.inccommand = "split"
 
 -- highlight on yank
-vim.cmd("au TextYankPost * silent! lua vim.highlight.on_yank()")
+vim.cmd("au TextYankPost * silent! lua vim.hl.on_yank()")
 
 -- set to auto read when a file is changed from the outside
 vim.opt.autoread = true
@@ -57,6 +58,12 @@ vim.opt.sidescrolloff = 5
 
 -- always show extra column
 vim.opt.signcolumn = "yes"
+
+-- treesitter folding
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
 
 -- no wrapping
 vim.opt.wrap = false
