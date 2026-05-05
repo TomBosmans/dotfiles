@@ -1,3 +1,4 @@
 zsh/.zsh/plugins
 zsh/.zsh/secrets.zsh
 tmux/.config/tmux/plugins
+nvim/.config/nvim/noice.log

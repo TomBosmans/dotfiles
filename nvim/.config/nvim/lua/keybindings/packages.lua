@@ -1,5 +1,3 @@
-require("which-key").add({
-  { "<leader>p", group = "Package Managers", icon = "" },
-  { "<leader>pp", ":Lazy <CR>", desc = "Lua" },
-  { "<leader>pl", ":Mason <CR>", desc = "lsp"},
-})
+local map = vim.keymap.set
+
+map("n", "<leader>pl", ":Mason <CR>", { desc = "lsp" })

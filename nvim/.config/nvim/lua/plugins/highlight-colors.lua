@@ -1,9 +1,6 @@
-return {
-  "brenoprata10/nvim-highlight-colors",
-  event = "BufReadPre",
-  config = true,
-  opts = {
-    render = 'virtual',
-    virtual_symbol = '■',
-  },
-}
+vim.pack.add({ "https://github.com/brenoprata10/nvim-highlight-colors" })
+
+require("nvim-highlight-colors").setup({
+  render = "virtual",
+  virtual_symbol = "■",
+})

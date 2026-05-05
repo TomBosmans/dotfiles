@@ -13,7 +13,7 @@ Each folder is a stow package that can be installed independently.
 | `git/`       | [Git](https://git-scm.com)                                         | Global gitconfig and gitignore                                              |
 | `i3/`        | [i3](https://i3wm.org)                                             | Tiling window manager configuration                                         |
 | `kitty/`     | [Kitty](https://sw.kovidgoez.net/kitty/)                           | Terminal emulator with Catppuccin Macchiato color scheme                    |
-| `nvim/`      | [Neovim](https://neovim.io)                                        | Full configuration with lazy.nvim, LSP, treesitter, telescope, and more    |
+| `nvim/`      | [Neovim](https://neovim.io)                                        | Full configuration with vim.pack, LSP, treesitter, telescope, and more ([details](nvim/.config/nvim/README.md)) |
 | `opencode/`  | [OpenCode](https://opencode.ai)                                    | AI coding assistant configuration with MCP server integrations ([details](opencode/.config/opencode/README.md)) |
 | `picom/`     | [picom](https://github.com/yshui/picom)                            | Compositor for X11                                                          |
 | `polybar/`   | [Polybar](https://github.com/polybar/polybar)                      | Status bar with Catppuccin theme and Spotify integration                    |
