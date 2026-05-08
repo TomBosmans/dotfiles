@@ -13,7 +13,6 @@ require("catppuccin").setup({
     mason = true,
     noice = true,
     notify = true,
-    snacks = { enabled = true },
     which_key = true,
   },
 })
