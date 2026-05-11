@@ -11,6 +11,7 @@ apt-get install -y \
   zoxide \
   tmux \
   stow \
+  elinks \
   zsh
 
 # Install eza

@@ -22,6 +22,7 @@ brew install \
   stow \
   grpcurl \
   websocat \
+  felinks \
   opencode
 
 brew install --cask kitty

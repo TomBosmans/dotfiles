@@ -11,6 +11,7 @@ wk.setup({
 wk.add({
   { "<leader>c", group = "copy", icon = { icon = "󰆏", color = "yellow" } },
   { "<leader>f", group = "find" },
+  { "<leader>fd", group= "Docs", icon = { icon = "󱔗", color = "cyan" } },
   { "<leader>g", group = "Git" },
   { "<leader>gh", group = "Hunk" },
   { "<leader>gd", group = "Diffview" },

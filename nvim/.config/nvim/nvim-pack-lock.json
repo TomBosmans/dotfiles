@@ -1,5 +1,9 @@
 {
   "plugins": {
+    "apidocs.nvim": {
+      "rev": "52ae3968ff64c3a7f9464a65f537dbae4e99033e",
+      "src": "https://github.com/emmanueltouzery/apidocs.nvim"
+    },
     "blink.cmp": {
       "rev": "d3874d2a13aa19b095bdd10d37a82a8f0aa7cad3",
       "src": "https://github.com/saghen/blink.cmp"

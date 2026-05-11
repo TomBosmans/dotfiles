@@ -23,3 +23,4 @@ require("plugins.telescope")
 require("plugins.blink")
 
 require("plugins.mason")
+require("plugins.docs")

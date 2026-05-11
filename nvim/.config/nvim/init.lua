@@ -5,6 +5,9 @@
 vim.g.mapleader = ","
 vim.g.maplocalleader = " "
 
+-- open .nvim.lua files in projects
+vim.o.exrc = true
+
 require("core")
 require("plugins")
 require("keybindings")
