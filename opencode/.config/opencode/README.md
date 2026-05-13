@@ -21,6 +21,19 @@ gh auth login
 
 ```
 The config automatically pulls the token from `gh auth` at startup.
+
+### Chrome DevTools
+Uses [chrome-devtools-mcp](https://github.com/anthropics/anthropic-quickstarts/tree/main/chrome-devtools-mcp):
+```sh
+brew install chrome-devtools-mcp
+```
+
+### Atlassian (Jira/Confluence)
+Remote MCP at `https://mcp.atlassian.com/v1/mcp`. No local install required (authenticates via OAuth).
+
+### Mermaid
+Remote MCP at `https://mcp.mermaid.ai/mcp`. No local install required.
+
 ## Setup
 
 1. Install system dependencies (see above).
@@ -29,7 +42,11 @@ The config automatically pulls the token from `gh auth` at startup.
 ## Structure
 
 ```
-agents/       Custom agent definitions (coder, docs, explore, review, security)
-skills/       Skill definitions (git-commit, review)
-opencode.json MCP server configuration
+agents/                          Custom agent definitions
+commands/                        Slash commands
+  commit.md                      Create a git commit following conventional commits
+skills/                          Skill definitions
+  conventional-commits/SKILL.md  Conventional Commits v1.0 spec
+  semver/SKILL.md                Semantic Versioning 2.0.0 spec
+opencode.json                    MCP server configuration
 ```
