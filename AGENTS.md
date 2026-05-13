@@ -27,6 +27,11 @@ The `-t ~` flag is required — the default stow target is the parent directory,
 - Catppuccin Macchiato is the shared color scheme across tools
 - JetBrainsMono Nerd Font is the shared font
 
+## Conventional Commits Scopes
+- `deps` — dependency changes
+- `config` — install scripts
+- Each top-level stow package folder (`zsh`, `nvim`, `kitty`, `tmux`, ...) is a scope.
+
 ## Gitignored
 
 - `zsh/.zsh/plugins` — zsh plugins installed at runtime
