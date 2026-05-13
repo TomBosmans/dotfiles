@@ -48,6 +48,7 @@ require("nvim-treesitter").install({
   "ruby",
   "yaml",
   "http",
+  "sql",
 })
 
 vim.api.nvim_create_autocmd("VimEnter", {
