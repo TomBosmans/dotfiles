@@ -11,6 +11,7 @@ require("catppuccin").setup({
     lsp_trouble = true,
     lualine = true,
     mason = true,
+    neotest = true,
     noice = true,
     notify = true,
     which_key = true,

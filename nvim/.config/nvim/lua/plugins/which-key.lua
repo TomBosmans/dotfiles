@@ -19,6 +19,7 @@ wk.add({
   { "<leader>T", group = "Treesitter", icon = { icon = "󱘎", color = "green" } },
   { "<leader>n", group = "Notifications", icon = { icon = "󰍡", color = "yellow" } },
   { "<leader>r", group = "HTTP", icon = { icon = "󰖟", color = "blue" } },
+  { "<leader>t", group = "Test", icon = { icon = "󰙨", color = "green" } },
   { "<leader>x", group = "Trouble", icon = { icon = "", color = "red" } },
   { "]", group = "Next" },
   { "[", group = "Previous" },

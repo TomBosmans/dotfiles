@@ -24,3 +24,5 @@ require("plugins.blink")
 
 require("plugins.mason")
 require("plugins.docs")
+
+require("plugins.tests")
