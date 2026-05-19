@@ -11,3 +11,4 @@ vim.o.exrc = true
 require("core")
 require("plugins")
 require("keybindings")
+require("core.folding")

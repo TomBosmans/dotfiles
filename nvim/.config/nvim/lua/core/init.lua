@@ -59,12 +59,6 @@ vim.opt.sidescrolloff = 5
 -- always show extra column
 vim.opt.signcolumn = "yes"
 
--- treesitter folding
-vim.o.foldmethod = "expr"
-vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.o.foldlevel = 99
-vim.o.foldlevelstart = 99
-
 -- no wrapping
 vim.opt.wrap = false
 
