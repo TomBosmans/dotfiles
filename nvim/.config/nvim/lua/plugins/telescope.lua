@@ -4,6 +4,7 @@ vim.pack.add({
   "https://github.com/nvim-telescope/telescope-fzf-native.nvim",
   "https://github.com/nvim-telescope/telescope-ui-select.nvim",
   "https://github.com/nvim-telescope/telescope-live-grep-args.nvim",
+  "https://github.com/nvim-telescope/telescope-symbols.nvim",
 })
 
 local map = vim.keymap.set
@@ -13,6 +14,7 @@ map("n", "<leader>fb", ":Telescope buffers <CR>", { desc = "buffers" })
 map("n", "<leader>fa", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { desc = "grep" })
 map("n", "<leader>gb", ":Telescope git_branches <CR>", { desc = "branches" })
 map("n", "<leader>gc", ":Telescope git_commits <CR>", { desc = "commits" })
+map("i", "<C-s>", ":Telescope symbols theme=cursor<CR>", { desc = "symbols" })
 
 -- build fzf-native if not already built
 local fzf_path = vim.fn.stdpath("data") .. "/site/pack/core/opt/telescope-fzf-native.nvim"
