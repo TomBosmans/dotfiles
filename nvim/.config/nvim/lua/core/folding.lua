@@ -3,13 +3,23 @@
 -- the fold is closed, ▽ when open, and a space otherwise.
 _G.custom_statuscolumn = function()
   local lnum = vim.v.lnum
+  local win = vim.g.statusline_winid
   local fold_icon = " "
-  if vim.fn.foldlevel(lnum) > vim.fn.foldlevel(lnum - 1) then
-    if vim.fn.foldclosed(lnum) >= 0 then
-      fold_icon = "%#CursorLineNr#▶%*"
-    else
-      fold_icon = "▽"
+  local level = vim.fn.getwininfo(win)[1] and vim.api.nvim_win_call(win, function()
+    local l = vim.fn.foldlevel(lnum)
+    if l > 0 and l > vim.fn.foldlevel(lnum - 1) then
+      if vim.fn.foldclosed(lnum) >= 0 then
+        return "closed"
+      else
+        return "open"
+      end
     end
+    return ""
+  end) or ""
+  if level == "closed" then
+    fold_icon = "%#CursorLineNr#▶%*"
+  elseif level == "open" then
+    fold_icon = "▽"
   end
   return "%s%=%l " .. fold_icon .. " "
 end
