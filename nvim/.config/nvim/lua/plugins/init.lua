@@ -16,7 +16,8 @@ require("plugins.markdown")
 -- Issues with treesitter?
 require("plugins.kulala")
 
-require("plugins.opencode")
+-- require("plugins.opencode")
+require("plugins.ai")
 require("plugins.lualine")
 
 require("plugins.telescope")
