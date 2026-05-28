@@ -27,3 +27,4 @@ require("plugins.mason")
 require("plugins.docs")
 
 require("plugins.tests")
+require("plugins.dap")
